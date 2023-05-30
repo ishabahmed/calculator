@@ -1,14 +1,14 @@
 class Calculator {
     constructor() {
         this.displayValue = "0";
-        this.result = 0;
+        this.pendingOperand = null;
+        this.pendingOperator = null;
         this.initialize();
     }
 
     initialize() {
         this.display = document.querySelector(".calculator__display-text");
         this.display.textContent = this.displayValue;
-
         this.setEventListeners();
     }
 
@@ -32,6 +32,7 @@ class Calculator {
             this.handleControlInput(button);
         }
 
+        this.displayValue = String(roundN(Number(this.displayValue), 10));
         this.display.textContent = this.displayValue;
     }
 
@@ -39,18 +40,23 @@ class Calculator {
         if (this.displayValue.length >= 10) { return; }
 
         const buttonValue = button.textContent;
-
-        if (button.id === "decimal") {
-            if (!this.displayValue.includes(".")) {
-                this.displayValue += buttonValue;
-            }
+        if (button.id === "decimal" && !this.displayValue.includes(".")) {
+            this.displayValue += buttonValue;
+        } else if (this.displayValue === "0") {
+            this.displayValue = buttonValue;
         } else {
-            if (this.displayValue == "0") {
-                this.displayValue = buttonValue;
-            } else {
-                this.displayValue += buttonValue;
-            }
+            this.displayValue += buttonValue;
         }
+    }
+
+    handleOperatorInput(button) {
+        if (this.pendingOperand && this.pendingOperator) {
+            this.displayValue = String(this.operate(this.pendingOperator, Number(this.pendingOperand), Number(this.displayValue)));
+        }
+
+        this.pendingOperator = button.textContent;
+        this.pendingOperand = this.displayValue;
+        this.displayValue = '0';
     }
 
     handleControlInput(button) {
@@ -58,44 +64,43 @@ class Calculator {
 
         if (buttonValue === "AC") {
             this.displayValue = "0";
-            this.result = 0;
+            this.pendingOperand = null;
+            this.pendingOperator = null;
+        } else if (button.id === "equals") {
+            if (this.pendingOperand && this.pendingOperator) {
+                this.displayValue = String(this.operate(this.pendingOperator, Number(this.pendingOperand), Number(this.displayValue)));
+                this.pendingOperand = null;
+                this.pendingOperator = null;
+            }
         }
-    }
-
-    add(a, b) {
-        return a + b;
-    }
-
-    subtract(a, b) {
-        return a - b;
-    }
-
-    multiply(a, b) {
-        return a * b;
-    }
-
-    divide(a, b) {
-        if (b == 0) {
-            return "Error: Cannot divide by zero";
-        }
-        return a / b;
     }
 
     operate(operator, a, b) {
         switch (operator) {
             case "+":
-                return add(a, b);
+                return this.add(a, b);
             case "-":
-                return subtract(a, b);
-            case "x":
-                return multiply(a, b);
+                return this.subtract(a, b);
+            case "*":
+                return this.multiply(a, b);
             case "/":
-                return divide(a, b);
-            case "=":
+                return this.divide(a, b);
+            default:
                 return a;
         }
     }
+
+    add(a, b) { return a + b; }
+    subtract(a, b) { return a - b; }
+    multiply(a, b) { return a * b; }
+    divide(a, b) {
+        if (b === 0) { return NaN; } return a / b;
+    }
 }
 
-/* when dom ready */
+function roundN(value, digits) {
+    var tenToN = 10 ** digits;
+    return (Math.round(value * tenToN)) / tenToN;
+}
+
 document.addEventListener("DOMContentLoaded", () => { new Calculator(); });

@@ -67,8 +67,10 @@ body {
   background-color: rgb(47, 47, 47);
 }
 
-.calculator__button--operator {
+.calculator__button--operator,
+.calculator__button--control#equals {
   background-color: rgb(240, 147, 0);
+  color: rgb(237, 237, 237);
 }
 
 .calculator__button:hover {
