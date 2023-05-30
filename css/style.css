@@ -1,44 +1,45 @@
+/* Global Styles */
 body {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  margin: 0;
   background-color: #f0f0f0;
   font-family: 'Roboto', sans-serif;
   font-weight: 100;
 }
 
+/* Calculator Styles */
 .calculator {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  background-color: #000;
   width: 320px;
   height: 568px;
+  padding: 30px;
+  background-color: #000;
   border-radius: 10px;
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.75);
-  font-family: inherit;
-  padding: 30px;
 }
 
 .calculator__display {
-  width: 100%;
-  height: 150px;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
+  width: 100%;
+  height: 150px;
 }
 
 .calculator__display-text {
-  font-size: 3rem;
   color: #fff;
+  font-size: 3rem;
 }
 
+/* Grid Layout for Calculator Buttons */
 .calculator__buttons {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .calculator__button {
@@ -50,10 +51,12 @@ body {
   padding: 20px;
   text-align: center;
   cursor: pointer;
+  transition: filter 0.3s ease-in-out;
 }
 
+/* Adjusts size of zero button to span two columns */
 .calculator__button--operand#zero {
-  grid-column: 1/3;
+  grid-column: span 2;
   border-radius: 50px;
   text-align: left;
 }
@@ -73,6 +76,7 @@ body {
   color: rgb(237, 237, 237);
 }
 
+/* Adds hover and active effects to buttons */
 .calculator__button:hover {
   filter: brightness(1.2);
 }

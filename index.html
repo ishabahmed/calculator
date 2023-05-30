@@ -3,40 +3,41 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="./css/style.css">
-  <title>Calculator</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <title>Interactive Calculator</title>
+  <meta name="description"
+    content="A modern, interactive, and user-friendly calculator application built with HTML, CSS, and JavaScript.">
 </head>
 
 <body>
   <main class="calculator">
-    <section class="calculator__display">
-      <p class="calculator__display-text">0</p>
+    <section class="calculator__display" aria-label="Display Area">
+      <p class="calculator__display-text" id="calculatorDisplay">0</p>
     </section>
-    <section class="calculator__buttons">
-      <button class="calculator__button calculator__button--control" id="clear">AC</button>
+    <section class="calculator__buttons" aria-label="Button Area">
+      <button class="calculator__button calculator__button--control" id="clear" title="Clear">AC</button>
       <button class="calculator__button calculator__button--control" id="filler1"></button>
       <button class="calculator__button calculator__button--control" id="filler2"></button>
-      <button class="calculator__button calculator__button--operator" id="divide">/</button>
-      <button class="calculator__button calculator__button--operand" id="seven">7</button>
-      <button class="calculator__button calculator__button--operand" id="eight">8</button>
-      <button class="calculator__button calculator__button--operand" id="nine">9</button>
-      <button class="calculator__button calculator__button--operator" id="multiply">*</button>
-      <button class="calculator__button calculator__button--operand" id="four">4</button>
-      <button class="calculator__button calculator__button--operand" id="five">5</button>
-      <button class="calculator__button calculator__button--operand" id="six">6</button>
-      <button class="calculator__button calculator__button--operator" id="subtract">-</button>
-      <button class="calculator__button calculator__button--operand" id="one">1</button>
-      <button class="calculator__button calculator__button--operand" id="two">2</button>
-      <button class="calculator__button calculator__button--operand" id="three">3</button>
-      <button class="calculator__button calculator__button--operator" id="add">+</button>
-      <button class="calculator__button calculator__button--operand" id="zero">0</button>
-      <button class="calculator__button calculator__button--operand" id="decimal">.</button>
-      <button class="calculator__button calculator__button--control" id="equals">=</button>
+      <button class="calculator__button calculator__button--operator" id="divide" title="Divide">/</button>
+      <button class="calculator__button calculator__button--operand" id="seven" title="Seven">7</button>
+      <button class="calculator__button calculator__button--operand" id="eight" title="Eight">8</button>
+      <button class="calculator__button calculator__button--operand" id="nine" title="Nine">9</button>
+      <button class="calculator__button calculator__button--operator" id="multiply" title="Multiply">*</button>
+      <button class="calculator__button calculator__button--operand" id="four" title="Four">4</button>
+      <button class="calculator__button calculator__button--operand" id="five" title="Five">5</button>
+      <button class="calculator__button calculator__button--operand" id="six" title="Six">6</button>
+      <button class="calculator__button calculator__button--operator" id="subtract" title="Subtract">-</button>
+      <button class="calculator__button calculator__button--operand" id="one" title="One">1</button>
+      <button class="calculator__button calculator__button--operand" id="two" title="Two">2</button>
+      <button class="calculator__button calculator__button--operand" id="three" title="Three">3</button>
+      <button class="calculator__button calculator__button--operator" id="add" title="Add">+</button>
+      <button class="calculator__button calculator__button--operand" id="zero" title="Zero">0</button>
+      <button class="calculator__button calculator__button--operand" id="decimal" title="Decimal">.</button>
+      <button class="calculator__button calculator__button--control" id="equals" title="Equals">=</button>
     </section>
   </main>
-  <script src="./js/script.js"></script>
+  <script defer src="./js/script.js"></script>
 </body>
 
 </html>
